@@ -75,8 +75,8 @@ Callstack:
 Variables:
 ----------
 Global: 
-- greet = [Function]
-- makeGreeting = [Function]
+- greet = ?
+- makeGreeting = ?
 - message = ?
 
 greet():
@@ -91,8 +91,7 @@ makeGreeting():
 
 **Step 1: Start with Global**
 - Write `[ Global ]` in the callstack
-- List all variables declared in global scope and their initial values
-- Functions are defined immediately, other variables start as `undefined` until assigned
+- List all variables declared in global scope. Their values start as `undefined` until assigned (except `function` declarations)
 
 **Step 2: When a function is called**
 - Add the function name to the top of the callstack (above what's already there)
@@ -121,6 +120,27 @@ makeGreeting():
 3. **Execution pauses**: When `greet` calls `makeGreeting`, `greet` pauses and waits—its variables stay in memory but execution doesn't continue until `makeGreeting` returns.
 4. **Stack is LIFO**: Last In, First Out. `makeGreeting` was called most recently, so it completes and gets removed first.
 5. **Return values flow back**: The return value from `makeGreeting` flows into `greet`, then the return value from `greet` flows into the global scope.
+
+### Practice
+
+Now, trace the callstack on your own:
+
+```js
+const step1 = (temp) => {
+  const timesNineFifths = temp * (9/5);
+  return step2(timesNineFifths)
+}
+
+const step2 = (temp) => {
+  return temp + 32;
+}
+
+const convertCelsiusToFahrenheit = (c) => {
+  return step1(c);
+}
+
+console.log(convertCelsiusToFahrenheit(100));
+```
 
 ---
 
@@ -215,15 +235,15 @@ processOrder();
 
 Make sure you can use these terms accurately:
 
-| Term | Definition | Example |
-|------|------------|---------|
-| **Expression** | Code that resolves to a value | `calculatePrice(100)` resolves to a number |
-| **Return** | Keyword that exits a function and determines what value it resolves to | `return total;` |
-| **Callstack** | The ordered list of functions currently executing | When `greet` calls `makeGreeting`, both are on the callstack |
-| **Scope** | The area of code where a variable is accessible | Variables inside a function are in that function's scope |
-| **Lexical scope** | Variables are accessible based on where they're written in code | Inner functions can access outer variables |
-| **Parameter** | A variable that receives a value when a function is called | In `greet(name)`, `name` is a parameter |
-| **Invoke/Call** | To execute a function | `greet("Maya")` invokes the `greet` function |
+| Term              | Definition                                                             | Example                                                      |
+| ----------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Expression**    | Code that resolves to a value                                          | `calculatePrice(100)` resolves to a number                   |
+| **Return**        | Keyword that exits a function and determines what value it resolves to | `return total;`                                              |
+| **Callstack**     | The ordered list of functions currently executing                      | When `greet` calls `makeGreeting`, both are on the callstack |
+| **Scope**         | The area of code where a variable is accessible                        | Variables inside a function are in that function's scope     |
+| **Lexical scope** | Variables are accessible based on where they're written in code        | Inner functions can access outer variables                   |
+| **Parameter**     | A variable that receives a value when a function is called             | In `greet(name)`, `name` is a parameter                      |
+| **Invoke/Call**   | To execute a function                                                  | `greet("Maya")` invokes the `greet` function                 |
 
 ### Reflection Questions
 
