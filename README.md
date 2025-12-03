@@ -148,18 +148,21 @@ console.log(convertCelsiusToFahrenheit(100));
 
 ### What Is Lexical Scope?
 
-**Lexical scope** means that variables are accessible based on where they're **written** in the code, not where functions are **called**.
+In JavaScript, variables have **"lexical" scope** means that variables are accessible based on where they're **written** in the code.
 
 ### The Golden Rules of Scope
 
 1. **Inner scopes can access outer scope variables**
-   - A function can access variables declared outside of it
+   - The code inside a function has access to variables declared outside of the function.
    
 2. **Outer scopes CANNOT access inner scope variables**
-   - Variables declared inside a function are not accessible outside that function
+   - Variables declared inside a function are not accessible outside of that function
 
 3. **Each function creates its own scope**
-   - Variables declared inside a function only exist within that function
+   - Variables declared inside a function only exist within that function.
+
+4. **let and const are block scoped**
+   - Any code block (`if` statements, `for` loops, etc...) is treated as a distinct scope for variables declared with `let` and `const`
 
 ### Debugging Practice
 
